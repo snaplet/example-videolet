@@ -1,24 +1,25 @@
-# Redwood
+# Snaplet Demo App: "VideoLet"
 
-> **WARNING:** RedwoodJS software has not reached a stable version 1.0 and should not be considered suitable for production use. In the "make it work; make it right; make it fast" paradigm, Redwood is in the later stages of the "make it work" phase.
+This is an example application (Written in RedwoodJS) that's used to demonstrate some of the power of [Snaplet](https://snaplet.dev).
 
-## Getting Started
-- [Tutorial](https://redwoodjs.com/tutorial/welcome-to-redwood): getting started and complete overview guide.
-- [Docs](https://redwoodjs.com/docs/introduction): using the Redwood Router, handling assets and files, list of command-line tools, and more.
-- [Redwood Community](https://community.redwoodjs.com): get help, share tips and tricks, and collaborate on everything about RedwoodJS.
+For this demo to be effective try to imagine that you just got hired at "VideoLet," a struggling video rental chain (See ["Video Rental Shop"](https://en.wikipedia.org/wiki/Video_rental_shop), and [THE LAST BLOCKBUSTER](https://www.youtube.com/watch?v=Ov9ls_3tJ1Y)), as the new webmaster! Congrats... you're desperately needed to breathe fresh life into the website.
 
-### Setup
+Good luck!
 
-We use Yarn as our package manager. To get the dependencies installed, just do this in the root directory:
+## Setup
 
 ```terminal
 yarn install
+yarn rw dev
 ```
 
-### Fire it up
+In order to restore a snapshot you need access to the VideoLet organization on Snaplet.
+Ask ["peterp" on Discord](https://discord.com/invite/aNSMaWtjKx) to add your to the VideoLet organization on Snaplet, then install [Snaplet CLI](https://www.notion.so/snaplet/CLI-Installation-332b17f65b8f41bc924352cbfbecee8d).
 
 ```terminal
-yarn redwood dev
-```
+snaplet auth
+✔ Logged in as: webmaster@videolet.test
 
-Your browser should open automatically to `http://localhost:8910` to see the web app. Lambda functions run on `http://localhost:8911` and are also proxied to `http://localhost:8910/.redwood/functions/*`. 
+snaplet restore
+Fetching latest snapshot...
+```
