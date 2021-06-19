@@ -3,6 +3,8 @@ export const schema = gql`
     film_id: Int!
     title: String!
     description: String
+    release_year: Int!
+    rental_rate: String!
   }
 
   type Query {

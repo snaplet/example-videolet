@@ -1,4 +1,4 @@
-import type { Film } from 'types/graphql'
+import type { Films } from 'types/graphql'
 
 export const QUERY = gql`
   query Films {
@@ -6,6 +6,8 @@ export const QUERY = gql`
       id: film_id
       title
       description
+      year: release_year
+      cost: rental_rate
     }
   }
 `
@@ -14,16 +16,17 @@ export const Loading = () => {
   return 'Loading...'
 }
 
-export const Success = ({ films }: { films: Film[] }) => {
+export const Success = ({ films }: Films) => {
   return (
     <div>
       <h2>VideoLet Films</h2>
-      <p>All the films below are available at VideoLet's outlets nationwide</p>
       <ol>
         {films.map((f) => {
           return (
             <li key={f.id}>
-              <b>{f.title}</b>
+              <b>
+                {f.title} - {f.year} - ${f.cost}
+              </b>
               <br />
               {f.description}
               <br />
