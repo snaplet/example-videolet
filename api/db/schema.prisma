@@ -88,7 +88,7 @@ model customer {
 }
 
 model film {
-  id                                           Int                     @id @default(autoincrement()) @map("film_id")
+  film_id                                      Int                     @id @default(autoincrement())
   title                                        String                  @db.VarChar(255)
   description                                  String?
   release_year                                 Int?
@@ -119,7 +119,7 @@ model film_actor {
   film_id     Int
   last_update DateTime @default(now()) @db.Timestamp(6)
   actor       actor    @relation(fields: [actor_id], references: [actor_id])
-  film        film     @relation(fields: [film_id], references: [id])
+  film        film     @relation(fields: [film_id], references: [film_id])
 
   @@id([actor_id, film_id])
   @@index([film_id], name: "idx_fk_film_id")
@@ -130,7 +130,7 @@ model film_category {
   category_id Int
   last_update DateTime @default(now()) @db.Timestamp(6)
   category    category @relation(fields: [category_id], references: [category_id])
-  film        film     @relation(fields: [film_id], references: [id])
+  film        film     @relation(fields: [film_id], references: [film_id])
 
   @@id([film_id, category_id])
 }
@@ -140,7 +140,7 @@ model inventory {
   film_id      Int
   store_id     Int
   last_update  DateTime @default(now()) @db.Timestamp(6)
-  film         film     @relation(fields: [film_id], references: [id])
+  film         film     @relation(fields: [film_id], references: [film_id])
   store        store    @relation(fields: [store_id], references: [store_id])
   rental       rental[]
 
@@ -310,14 +310,14 @@ model staff {
   address                             address            @relation(fields: [address_id], references: [address_id])
   store_staff_store_idTostore         store              @relation("staff_store_idTostore", fields: [store_id], references: [store_id])
   payment                             payment[]
+  rental                              rental[]
+  store_staffTostore_manager_staff_id store?             @relation("staffTostore_manager_staff_id")
   payment_p2007_01                    payment_p2007_01[] @ignore
   payment_p2007_02                    payment_p2007_02[] @ignore
   payment_p2007_03                    payment_p2007_03[] @ignore
   payment_p2007_04                    payment_p2007_04[] @ignore
   payment_p2007_05                    payment_p2007_05[] @ignore
   payment_p2007_06                    payment_p2007_06[] @ignore
-  rental                              rental[]
-  store_staffTostore_manager_staff_id store?             @relation("staffTostore_manager_staff_id")
 }
 
 model store {

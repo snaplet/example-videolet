@@ -1,6 +1,6 @@
 export const schema = gql`
   type Film {
-    id: Int!
+    film_id: Int!
     title: String!
     description: String
   }

@@ -3,7 +3,7 @@ import type { Film } from 'types/graphql'
 export const QUERY = gql`
   query Films {
     films {
-      id
+      id: film_id
       title
       description
     }

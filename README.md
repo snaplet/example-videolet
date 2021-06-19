@@ -1,10 +1,8 @@
 # Snaplet Demo App: "VideoLet"
 
-This is an example application (Written in RedwoodJS) that's used to demonstrate some of the power of [Snaplet](https://snaplet.dev).
+This is an example application (Written in RedwoodJS) that's used to demo some of the power of [Snaplet](https://snaplet.dev).
 
-For this demo to be effective try to imagine that you just got hired at "VideoLet," a struggling video rental chain (See ["Video Rental Shop"](https://en.wikipedia.org/wiki/Video_rental_shop), and [THE LAST BLOCKBUSTER](https://www.youtube.com/watch?v=Ov9ls_3tJ1Y)), as the new webmaster! Congrats... you're desperately needed to breathe fresh life into the website.
-
-Good luck!
+For this demo to be effective try to imagine that you just got hired at "VideoLet," a struggling video rental chain (See ["Video Rental Shop"](https://en.wikipedia.org/wiki/Video_rental_shop), and [THE LAST BLOCKBUSTER](https://www.youtube.com/watch?v=Ov9ls_3tJ1Y)), as the new webmaster! Congrats! You're desperately needed to breathe fresh life into the website. Good luck!
 
 ## Setup
 
