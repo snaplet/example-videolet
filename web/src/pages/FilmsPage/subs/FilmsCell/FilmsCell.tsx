@@ -17,7 +17,8 @@ export const Loading = () => {
 export const Success = ({ films }: { films: Film[] }) => {
   return (
     <div>
-      <h2>Videolet Film Catalog</h2>
+      <h2>VideoLet Films</h2>
+      <p>All the films below are available at VideoLet's outlets nationwide</p>
       <ol>
         {films.map((f) => {
           return (
