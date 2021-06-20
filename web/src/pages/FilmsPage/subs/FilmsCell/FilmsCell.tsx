@@ -18,23 +18,18 @@ export const Loading = () => {
 
 export const Success = ({ films }: Films) => {
   return (
-    <div>
-      <h2>VideoLet Films</h2>
-      <ol>
-        {films.map((f) => {
-          return (
-            <li key={f.id}>
-              <b>
-                {f.title} - {f.year} - ${f.cost}
-              </b>
-              <br />
-              {f.description}
-              <br />
-              <br />
-            </li>
-          )
-        })}
-      </ol>
-    </div>
+    <ol>
+      {films.map((f) => {
+        return (
+          <li key={f.id}>
+            <b>{f.title}</b> - ({f.year}) - <b>${f.cost}</b>
+            <br />
+            {f.description}
+            <br />
+            <br />
+          </li>
+        )
+      })}
+    </ol>
   )
 }

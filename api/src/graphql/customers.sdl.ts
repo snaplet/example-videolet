@@ -1,11 +1,11 @@
 export const schema = gql`
   type Customer {
-    customer_id: Int!
-    first_name: String!
-    last_name: String!
+    id: Int!
+    firstName: String!
+    lastName: String!
     email: String!
     active: Boolean!
-    last_update: DateTime
+    lastUpdate: DateTime
   }
 
   type Query {
