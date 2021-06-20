@@ -88,14 +88,14 @@ model customer {
 }
 
 model film {
-  film_id                                      Int                     @id @default(autoincrement())
+  id                                           Int                     @id @default(autoincrement()) @map("film_id")
   title                                        String                  @db.VarChar(255)
   description                                  String?
-  release_year                                 Int?
+  year                                         Int?                    @map("release_year")
   language_id                                  Int
   original_language_id                         Int?
   rental_duration                              Int                     @default(3) @db.SmallInt
-  rental_rate                                  Decimal                 @default(4.99) @db.Decimal(4, 2)
+  cost                                         Decimal                 @default(4.99) @map("rental_rate") @db.Decimal(4, 2)
   length                                       Int?                    @db.SmallInt
   replacement_cost                             Decimal                 @default(19.99) @db.Decimal(5, 2)
   rating                                       mpaa_rating?            @default(G)
@@ -119,7 +119,7 @@ model film_actor {
   film_id     Int
   last_update DateTime @default(now()) @db.Timestamp(6)
   actor       actor    @relation(fields: [actor_id], references: [actor_id])
-  film        film     @relation(fields: [film_id], references: [film_id])
+  film        film     @relation(fields: [film_id], references: [id])
 
   @@id([actor_id, film_id])
   @@index([film_id], name: "idx_fk_film_id")
@@ -130,7 +130,7 @@ model film_category {
   category_id Int
   last_update DateTime @default(now()) @db.Timestamp(6)
   category    category @relation(fields: [category_id], references: [category_id])
-  film        film     @relation(fields: [film_id], references: [film_id])
+  film        film     @relation(fields: [film_id], references: [id])
 
   @@id([film_id, category_id])
 }
@@ -140,7 +140,7 @@ model inventory {
   film_id      Int
   store_id     Int
   last_update  DateTime @default(now()) @db.Timestamp(6)
-  film         film     @relation(fields: [film_id], references: [film_id])
+  film         film     @relation(fields: [film_id], references: [id])
   store        store    @relation(fields: [store_id], references: [store_id])
   rental       rental[]
 

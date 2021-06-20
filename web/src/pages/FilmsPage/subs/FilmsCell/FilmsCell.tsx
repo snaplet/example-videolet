@@ -3,11 +3,11 @@ import type { Films } from 'types/graphql'
 export const QUERY = gql`
   query Films {
     films {
-      id: film_id
+      id
       title
       description
-      year: release_year
-      cost: rental_rate
+      year
+      cost
     }
   }
 `
