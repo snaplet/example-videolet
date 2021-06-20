@@ -163,7 +163,7 @@ model payment {
   amount       Decimal  @db.Decimal(5, 2)
   payment_date DateTime @db.Timestamp(6)
   customer     customer @relation(fields: [customer_id], references: [id])
-  rental       rental   @relation(fields: [rental_id], references: [rental_id])
+  rental       rental   @relation(fields: [rental_id], references: [id])
   staff        staff    @relation(fields: [staff_id], references: [staff_id])
 
   @@index([customer_id], name: "idx_fk_customer_id")
@@ -179,7 +179,7 @@ model payment_p2007_01 {
   amount       Decimal  @db.Decimal(5, 2)
   payment_date DateTime @db.Timestamp(6)
   customer     customer @relation(fields: [customer_id], references: [id])
-  rental       rental   @relation(fields: [rental_id], references: [rental_id])
+  rental       rental   @relation(fields: [rental_id], references: [id])
   staff        staff    @relation(fields: [staff_id], references: [staff_id])
 
   @@index([customer_id], name: "idx_fk_payment_p2007_01_customer_id")
@@ -196,7 +196,7 @@ model payment_p2007_02 {
   amount       Decimal  @db.Decimal(5, 2)
   payment_date DateTime @db.Timestamp(6)
   customer     customer @relation(fields: [customer_id], references: [id])
-  rental       rental   @relation(fields: [rental_id], references: [rental_id])
+  rental       rental   @relation(fields: [rental_id], references: [id])
   staff        staff    @relation(fields: [staff_id], references: [staff_id])
 
   @@index([customer_id], name: "idx_fk_payment_p2007_02_customer_id")
@@ -213,7 +213,7 @@ model payment_p2007_03 {
   amount       Decimal  @db.Decimal(5, 2)
   payment_date DateTime @db.Timestamp(6)
   customer     customer @relation(fields: [customer_id], references: [id])
-  rental       rental   @relation(fields: [rental_id], references: [rental_id])
+  rental       rental   @relation(fields: [rental_id], references: [id])
   staff        staff    @relation(fields: [staff_id], references: [staff_id])
 
   @@index([customer_id], name: "idx_fk_payment_p2007_03_customer_id")
@@ -230,7 +230,7 @@ model payment_p2007_04 {
   amount       Decimal  @db.Decimal(5, 2)
   payment_date DateTime @db.Timestamp(6)
   customer     customer @relation(fields: [customer_id], references: [id])
-  rental       rental   @relation(fields: [rental_id], references: [rental_id])
+  rental       rental   @relation(fields: [rental_id], references: [id])
   staff        staff    @relation(fields: [staff_id], references: [staff_id])
 
   @@index([customer_id], name: "idx_fk_payment_p2007_04_customer_id")
@@ -247,7 +247,7 @@ model payment_p2007_05 {
   amount       Decimal  @db.Decimal(5, 2)
   payment_date DateTime @db.Timestamp(6)
   customer     customer @relation(fields: [customer_id], references: [id])
-  rental       rental   @relation(fields: [rental_id], references: [rental_id])
+  rental       rental   @relation(fields: [rental_id], references: [id])
   staff        staff    @relation(fields: [staff_id], references: [staff_id])
 
   @@index([customer_id], name: "idx_fk_payment_p2007_05_customer_id")
@@ -264,7 +264,7 @@ model payment_p2007_06 {
   amount       Decimal  @db.Decimal(5, 2)
   payment_date DateTime @db.Timestamp(6)
   customer     customer @relation(fields: [customer_id], references: [id])
-  rental       rental   @relation(fields: [rental_id], references: [rental_id])
+  rental       rental   @relation(fields: [rental_id], references: [id])
   staff        staff    @relation(fields: [staff_id], references: [staff_id])
 
   @@index([customer_id], name: "idx_fk_payment_p2007_06_customer_id")
@@ -273,11 +273,11 @@ model payment_p2007_06 {
 }
 
 model rental {
-  rental_id        Int                @id @default(autoincrement())
-  rental_date      DateTime           @db.Timestamp(6)
+  id               Int                @id @default(autoincrement()) @map("rental_id")
+  rentalDate       DateTime           @map("rental_date") @db.Timestamp(6)
   inventory_id     Int
   customer_id      Int
-  return_date      DateTime?          @db.Timestamp(6)
+  returnDate       DateTime?          @map("return_date") @db.Timestamp(6)
   staff_id         Int
   last_update      DateTime           @default(now()) @db.Timestamp(6)
   customer         customer           @relation(fields: [customer_id], references: [id])
@@ -291,7 +291,7 @@ model rental {
   payment_p2007_05 payment_p2007_05[] @ignore
   payment_p2007_06 payment_p2007_06[] @ignore
 
-  @@unique([rental_date, inventory_id, customer_id], name: "idx_unq_rental_rental_date_inventory_id_customer_id")
+  @@unique([rentalDate, inventory_id, customer_id], name: "idx_unq_rental_rental_date_inventory_id_customer_id")
   @@index([inventory_id], name: "idx_fk_inventory_id")
 }
 

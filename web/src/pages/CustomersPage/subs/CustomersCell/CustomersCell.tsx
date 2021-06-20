@@ -1,7 +1,8 @@
+import { Link, routes } from '@redwoodjs/router'
 import type { Customers } from 'types/graphql'
 
 export const QUERY = gql`
-  query Films {
+  query Customers {
     customers {
       id
       firstName
@@ -22,7 +23,9 @@ export const Success = ({ customers }: Customers) => {
         return (
           <li key={c.id}>
             <b>
-              {c.lastName}, {c.firstName}
+              <Link to={routes.customer({ id: c.id })}>
+                {c.lastName}, {c.firstName}
+              </Link>
             </b>
             <br />
             {c.email}
