@@ -46,11 +46,13 @@ export const Success = ({ customer }: Customer) => {
         {customer.rentals.map((r) => {
           return (
             <li key={r.id}>
+              {r.film.title}
+              <br />
               <pre>
                 {f.format(new Date(r.rentalDate))} -{' '}
                 {f.format(new Date(r.returnDate))}
               </pre>
-              {r.film.title}
+
               <br />
             </li>
           )
