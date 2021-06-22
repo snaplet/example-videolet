@@ -28,7 +28,7 @@ export const Success = ({ customers }: Customers) => {
               </Link>
             </b>
             <br />
-            {c.email}
+            <>{c.email}</>
             <br />
             <br />
           </li>

@@ -1,0 +1,42 @@
+body {
+    background-color: #f6f6f6;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.env-development {
+  background-color: #aff;
+}
+.env-production {
+  background-color: #ffa;
+}
+.envName {
+  float: right;
+  color: #779;
+}
+.env-production .envName {
+  color: #884;
+}
+.env-development .envName {
+  color: #488;
+}
+
+.returnStatus {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.rsYes {
+  color: #080;
+}
+.rsNo {
+  color: #f00;
+}
+
+.rental {
+  border-top: 1px solid #fff;
+  padding: 5px;
+}
+
+.debug {
+  font-size: 3em;
+  color: #f33;
+}

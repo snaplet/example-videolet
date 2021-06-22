@@ -9,9 +9,12 @@
 
 import { Router, Route, routes, Link, Set } from '@redwoodjs/router'
 
+const envName = process.env.NODE_ENV;
+
 const MainLayout = ({ children }) => {
   return (
-    <div>
+    <div className={'env-' + envName}>
+      <h2 className="envName">{envName}</h2>
       <h1>VideoLet</h1>
       <Link to={routes.films()}>Films</Link> | <Link to={routes.customers()}>Customers</Link>
       <br />

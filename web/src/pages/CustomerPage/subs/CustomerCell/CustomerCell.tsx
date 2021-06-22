@@ -22,6 +22,7 @@ export const QUERY = gql`
   }
 `
 
+
 export const Loading = () => {
   return 'Loading...'
 }
@@ -59,17 +60,17 @@ export const Success = ({ customer }: Customer) => {
           // Format return date. If return date is the same as epoch time then it is not returned.
           const rentalEnd =
             d2.getTime() === new Date(0).getTime()
-              ? f.format(new Date()) + ' (not returned)'
+              ? f.format(new Date())
               : f.format(d2)
 
           return (
-            <li key={r.id}>
+            <li className="rental" key={r.id}>
               <b>Status:</b>{' '}
               <pre style={{ display: 'inline' }}>
                 {!isReturned ? (
-                  <span style={{ color: 'red' }}>Not returned</span>
+                  <span className="returnStatus" style={{ color: 'red' }}>Not returned</span>
                 ) : (
-                  <span style={{ color: 'green' }}>Returned</span>
+                  <span className="returnStatus" style={{ color: 'green' }}>Returned</span>
                 )}
               </pre>
               <br />
@@ -86,6 +87,12 @@ export const Success = ({ customer }: Customer) => {
               <b>Period:</b>{' '}
               <pre style={{ display: 'inline' }}>
                 {rentalStart} - {rentalEnd}
+                {d2.getTime() === new Date(0).getTime() &&
+                  <span className="returnStatus rsNo">NOT RETURNED</span>
+                }
+                {d2.getTime() != new Date(0).getTime() &&
+                  <span className="returnStatus rsYes">RETURNED</span>
+                }
               </pre>
               <br />
               {r.film.title}
