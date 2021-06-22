@@ -52,7 +52,7 @@ export const Success = ({ customer }: Customer) => {
             isReturned = true
           }
 
-          const dayInHours = 86_400_000
+          const dayInHours = 86400000
           const totalDays = Math.round(Math.abs((d2 - d1) / dayInHours))
 
           const rentalStart = f.format(d1)
