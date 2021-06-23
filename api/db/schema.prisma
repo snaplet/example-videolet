@@ -82,9 +82,9 @@ model customer {
   payment_p2007_06 payment_p2007_06[] @ignore
   rental           rental[]
 
-  @@index([address_id], name: "idx_fk_address_id")
-  @@index([store_id], name: "idx_fk_store_id")
-  @@index([lastName], name: "idx_last_name")
+  // @@index([address_id], name: "idx_fk_address_id")
+  // @@index([store_id], name: "idx_fk_store_id")
+  // @@index([lastName], name: "idx_last_name")
 }
 
 model film {
@@ -108,10 +108,10 @@ model film {
   film_category                                film_category[]
   inventory                                    inventory[]
 
-  @@index([fulltext], name: "film_fulltext_idx")
-  @@index([language_id], name: "idx_fk_language_id")
-  @@index([original_language_id], name: "idx_fk_original_language_id")
-  @@index([title], name: "idx_title")
+  // @@index([fulltext], name: "film_fulltext_idx")
+  // @@index([language_id], name: "idx_fk_language_id")
+  // @@index([original_language_id], name: "idx_fk_original_language_id")
+  // @@index([title], name: "idx_title")
 }
 
 model film_actor {
@@ -166,8 +166,8 @@ model payment {
   rental       rental   @relation(fields: [rental_id], references: [id])
   staff        staff    @relation(fields: [staff_id], references: [staff_id])
 
-  @@index([customer_id], name: "idx_fk_customer_id")
-  @@index([staff_id], name: "idx_fk_staff_id")
+  // @@index([customer_id], name: "idx_fk_customer_id")
+  // @@index([staff_id], name: "idx_fk_staff_id")
 }
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
@@ -308,16 +308,18 @@ model staff {
   last_update                         DateTime           @default(now()) @db.Timestamp(6)
   picture                             Bytes?
   address                             address            @relation(fields: [address_id], references: [address_id])
-  store_staff_store_idTostore         store              @relation("staff_store_idTostore", fields: [store_id], references: [store_id])
+  store_staff_store_idTostore         Int?
   payment                             payment[]
   rental                              rental[]
-  store_staffTostore_manager_staff_id store?             @relation("staffTostore_manager_staff_id")
+  store_staffTostore_manager_staff_id Int?
   payment_p2007_01                    payment_p2007_01[] @ignore
   payment_p2007_02                    payment_p2007_02[] @ignore
   payment_p2007_03                    payment_p2007_03[] @ignore
   payment_p2007_04                    payment_p2007_04[] @ignore
   payment_p2007_05                    payment_p2007_05[] @ignore
   payment_p2007_06                    payment_p2007_06[] @ignore
+  store                               store?             @relation(fields: [storeStore_id], references: [store_id])
+  storeStore_id                       Int?
 }
 
 model store {
@@ -326,10 +328,11 @@ model store {
   address_id                          Int
   last_update                         DateTime    @default(now()) @db.Timestamp(6)
   address                             address     @relation(fields: [address_id], references: [address_id])
-  staff_staffTostore_manager_staff_id staff       @relation("staffTostore_manager_staff_id", fields: [manager_staff_id], references: [staff_id])
+  staff_staffTostore_manager_staff_id Int?
   customer                            customer[]
   inventory                           inventory[]
-  staff_staff_store_idTostore         staff[]     @relation("staff_store_idTostore")
+  staff_staff_store_idTostore         Int[]
+  staff                               staff[]
 }
 
 enum mpaa_rating {
