@@ -78,6 +78,11 @@ async function main() {
     })
   }
 
+  let x = "INSERT INTO \"language\" (\"name\") VALUES ('English');";
+  await db.$executeRaw(x)
+  x = "INSERT INTO film (\"film_id\", \"title\", \"description\", \"release_year\", \"language_id\", \"fulltext\") VALUES (1, 'A Prisma Story', 'the greatest story of Prisma ever told', '2021', 1, '') ON CONFLICT (film_id) DO NOTHING;";
+  await db.$executeRaw(x)
+
   console.log('Starting...')
 
   const customers = [
@@ -99,6 +104,31 @@ async function main() {
             store_id: store.store_id,
           },
         },
+        rental: {
+          create: {
+            rentalDate: new Date('2020-01-01'),
+            returnDate: new Date('2021-01-01'),
+            staff: {
+              connect: {
+                staff_id: staff.staff_id,
+              },
+            },
+            inventory: {
+              create: {
+                film: {
+                  connect: {
+                    id: 1
+                  },
+                },
+                store: {
+                  connect: {
+                    store_id: store.store_id,
+                  },
+                },
+              }
+            }
+          }
+        }
       },
     })
   })
