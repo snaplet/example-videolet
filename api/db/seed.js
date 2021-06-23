@@ -14,26 +14,29 @@ const db = new PrismaClient()
  * @see https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#createmany
  */
 async function main() {
-  console.warn('Please define your seed data.')
+  // Customers
+  const films = [
+    { title: 'prisma', description: 'epic drama of prisma', release_year: '2007', language_id: 1, rental_duration: 3, rental_rate: 0.99, length: 90, rating: 'PG' },
+  ]
 
-  // // Change to match your data model and seeding needs
-  // const data = [
-  //   { name: 'alice', email: 'alice@example.com' },
-  //   { name: 'mark', email: 'mark@example.com' },
-  //   { name: 'jackie', email: 'jackie@example.com' },
-  //   { name: 'bob', email: 'bob@example.com' },
-  // ]
+  const customers = [
+    { first_name: 'tony', last_name: 'stark', email: 'tony@example.com' },
+    { first_name: 'mark', last_name: 'stark', email: 'mark@example.com' },
+    { first_name: 'jackie', last_name: 'stark', email: 'jackie@example.com' },
+    { first_name: 'bob', last_name: 'stark', email: 'bob@example.com' },
+  ]
 
-  // // Note: if using PostgreSQL, using `createMany` to insert multiple records is much faster
-  // // @see: https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#createmany
-  // return Promise.all(
-  //   data.map(async (user) => {
-  //     const record = await db.user.create({
-  //       data: { name: user.name, email: user.email },
-  //     })
-  //     console.log(record)
-  //   })
-  // )
+  console.log("Starting")
+
+  console.log(db);
+  console.log(db.customer);
+
+  await customers.map(user => {
+    const record = db.customer.create({
+      data: user
+    })
+    console.log(record)
+  })
 }
 
 main()
