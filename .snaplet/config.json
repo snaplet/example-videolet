@@ -1,4 +1,4 @@
 {
-	"databaseId": "ckq46skzy358532hraos3ptc7p",
-	"restoreDbName": "videolet"
+  "databaseId": "ckq46skzy358532hraos3ptc7p",
+  "dataTargetDbUrl": "postgresql://postgres@localhost:5432/videolet"
 }
