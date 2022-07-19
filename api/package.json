@@ -8,7 +8,7 @@
     "@redwoodjs/api-server": "^0.34.1"
   },
   "devDependencies": {
-    "prisma": "3.6.0"
+    "prisma": "4.1.0"
   },
   "prisma": {
     "seed": "snaplet restore --data-only"
